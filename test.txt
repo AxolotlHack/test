@@ -1,6 +1,14 @@
-ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable,
-                                        __file__, None, 1)
-exit()
+try:
+    is_admin = os.getuid() == 0
+except AttributeError:
+    is_admin = ctypes.windll.shell32.IsUserAnAdmin() != 0
+
+if is_admin:
+    pass
+else:
+    ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable,
+                                            __file__, None, 1)
+    exit()
 
 inp = random.randint(1, 10000)
 
