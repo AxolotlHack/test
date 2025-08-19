@@ -8,4 +8,4 @@ for i in range(inp):
     with winreg.OpenKey(winreg.HKEY_CURRENT_USER, r"Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer", 0, winreg.KEY_ALL_ACCESS) as key:
         test_ket = winreg.CreateKey(key, "TEST")
         winreg.SetValueEx(test_ket, f"{i}", 0, winreg.REG_SZ, "LoliLand.exe")
-    
+        test_ket.Close()
